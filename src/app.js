@@ -5,30 +5,38 @@ import "./style.css";
 import "./assets/img/rigo-baby.jpg";
 import "./assets/img/4geeks.ico";
 
-window.onload = () => {
-  document.querySelector("#reload").addEventListener("click", () => {
-    document.querySelector("#excuse").innerHTML = generate();
-  });
-};
+function elemento(arreglo) {
+  const max = arreglo.length - 1;
+  const numero = Math.floor(Math.random() * (max - 0 + 1) + 0);
+  const elemento = arreglo[numero];
 
-let generate = () => {
-  let who = ["My dog", "The police", "A tornado", "My cat", "My grandpa"];
-  let what = ["ate", "took", "flew", "float", "stole"];
-  let which = ["my homework", "my car", "my house", "my chair", "my cellphone"];
-  let when = ["yesterday.", "this morning.", "last night.", "last week."];
+  return elemento;
+}
 
-  let whoIndex = Math.floor(Math.random() * who.length);
-  let whatIndex = Math.floor(Math.random() * what.length);
-  let whichIndex = Math.floor(Math.random() * which.length);
-  let whenIndex = Math.floor(Math.random() * when.length);
+function generarExcusa() {
+  let texto = "";
 
-  return (
-    who[whoIndex] +
-    " " +
-    what[whatIndex] +
-    " " +
-    which[whichIndex] +
-    " " +
-    when[whenIndex]
-  );
+  texto += elemento(who) + " ";
+  texto += elemento(action) + " ";
+  texto += elemento(what) + " ";
+  texto += elemento(when);
+
+  return texto;
+}
+
+const who = ["The dog", "My grandma", "His turtle", "My bird"];
+const action = ["ate", "peed", "crushed", "broke"];
+const what = ["my homework", "the keys", "the car"];
+const when = [
+  "before the class",
+  "right on time",
+  "when I finished",
+  "during my lunch",
+  "while I was praying"
+];
+
+window.onload = function() {
+  //write your code here
+  const excusa = generarExcusa();
+  document.getElementById("excuse").textContent = excusa;
 };
